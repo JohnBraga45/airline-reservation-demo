@@ -20,5 +20,7 @@ test('fluxo de reserva de voo', async ({ page }) => {
 
   // Verificar mensagem de sucesso
   await expect(page.getByText('Reserva confirmada!')).toBeVisible();
-  await expect(page.getByText(passenger)).toBeVisible();
+  // Verificar passageiro especificamente na tabela de "Minhas Reservas" para evitar ambiguidade com o alerta
+  const reservasSection = page.locator('#reservas');
+  await expect(reservasSection.getByRole('cell', { name: passenger })).toBeVisible();
 });

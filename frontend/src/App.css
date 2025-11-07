@@ -1,0 +1,193 @@
+/* Tema e layout profissional */
+:root {
+   --bg: #f6f8fa;
+   --surface: #ffffff;
+   --text: #24292e;
+   --muted: #6a737d;
+   --border: #e1e4e8;
+   --shadow: rgba(27, 31, 35, 0.08);
+   --brand-primary: #7BC242; /* verde inspirado em companhias aéreas */
+   --brand-accent: #E60000;  /* vermelho de acento */
+   --primary: var(--brand-primary);
+   --primary-hover: #68aa39;
+   --success-bg: #d1e7dd;
+   --success-text: #0f5132;
+   --success-border: #baddcc;
+ }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.app-header {
+   background: var(--surface);
+   border-bottom: 3px solid var(--brand-accent);
+   box-shadow: 0 2px 6px var(--shadow);
+ }
+ .app-header .brand {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 16px 24px 8px 24px;
+   font-weight: 800;
+   font-size: 18px;
+   letter-spacing: 0.2px;
+ }
+ .app-header .nav {
+   max-width: 1000px;
+   margin: 0 auto;
+   padding: 0 24px 12px 24px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+ }
+ .nav-links { display: flex; gap: 16px; }
+ .nav-links a { color: var(--text); font-weight: 600; }
+ .nav-links a:hover { color: var(--primary); }
+ .btn-cta {
+   background: var(--brand-accent);
+   border-color: var(--brand-accent);
+   color: #fff;
+ }
+ .btn-cta:hover { background: #cc0000; }
+
+
+.container {
+  max-width: 1000px;
+  margin: 24px auto;
+  padding: 0 24px;
+}
+
+.card {
+   background: var(--surface);
+   border: 1px solid var(--border);
+   border-radius: 12px;
+   box-shadow: 0 4px 12px var(--shadow);
+   padding: 16px;
+ }
+ 
+ .hero {
+   background: linear-gradient(135deg, var(--primary) 0%, #43a047 50%, #0d6efd 100%);
+   color: #fff;
+   border: none;
+ }
+ .hero-title { margin: 0 0 6px 0; font-size: 28px; }
+ .hero-subtitle { margin: 0 0 12px 0; opacity: 0.9; }
+ .hero-actions { display: flex; gap: 8px; }
+ 
+ .section-title {
+   margin: 0 0 8px 0;
+   font-size: 22px;
+ }
+ .subtitle {
+   margin: 0 0 16px 0;
+   color: var(--muted);
+ }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.table thead th {
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  background: #f0f2f5;
+  border-bottom: 1px solid var(--border);
+}
+.table tbody td {
+   padding: 12px;
+   border-bottom: 1px solid var(--border);
+ }
+ .table tbody tr:hover {
+   background: #fafbfc;
+ }
+ .table .numeric {
+   text-align: center;
+ }
+ .badge {
+   display: inline-block;
+   padding: 4px 8px;
+   border-radius: 999px;
+   font-size: 12px;
+   font-weight: 700;
+   border: 1px solid var(--border);
+ }
+ .badge-success {
+   background: #e9f7ef;
+   color: #0f5132;
+   border-color: #cfead8;
+ }
+ .badge-danger {
+   background: #fbe9e9;
+   color: #842029;
+   border-color: #f1c7c7;
+ }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.02s ease;
+}
+.btn:hover { box-shadow: 0 2px 6px var(--shadow); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+
+.btn-secondary {
+  background: #f6f8fa;
+}
+
+.input {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+.alert {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.alert-success {
+  background: var(--success-bg);
+  border-color: var(--success-border);
+  color: var(--success-text);
+}
+
+.actions { display: flex; gap: 8px; }
+ .form-row { display: flex; gap: 8px; }
+ 
+ .footer {
+   margin-top: 24px;
+   padding: 24px 0;
+   border-top: 1px solid var(--border);
+ }
+ 
+ .muted { color: var(--muted); }

@@ -1,0 +1,20 @@
+/* Reset leve e base tipográfica alinhada ao tema */
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body, #root { height: 100%; }
+body { margin: 0; }
+
+/* Links usam a cor primária do tema */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Remover interferência nos botões base; usamos .btn no App.css */
+button { font-family: inherit; }

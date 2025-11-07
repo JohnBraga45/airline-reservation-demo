@@ -1,0 +1,111 @@
+{
+  "info": {
+    "name": "Sistema de Voo - API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Listar voos",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/flights"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const flights = pm.response.json();",
+              "pm.test('Há voos disponíveis', function () { pm.expect(flights.length).to.be.above(0); });",
+              "pm.environment.set('flightId', flights[0].id);",
+              "pm.environment.set('initialSeats', flights[0].seatsAvailable);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Criar reserva",
+      "request": {
+        "method": "POST",
+        "header": [{"key": "Content-Type", "value": "application/json"}],
+        "body": { "mode": "raw", "raw": "{\n  \"flightId\": {{flightId}},\n  \"passengerName\": \"Postman Tester\"\n}" },
+        "url": "{{baseUrl}}/reservations"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 201 ou 200', function () { pm.expect([200,201]).to.include(pm.response.code); });",
+              "const r = pm.response.json();",
+              "pm.test('Reserva contém ID', function () { pm.expect(r.id).to.be.a('number'); });",
+              "pm.environment.set('reservationId', r.id);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultar reserva",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/reservations/{{reservationId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const r = pm.response.json();",
+              "pm.test('Reserva traz flightId correto', function () { pm.expect(r.flightId).to.eql(parseInt(pm.environment.get('flightId'))); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Cancelar reserva",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/reservations/{{reservationId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const r = pm.response.json();",
+              "pm.test('Reserva cancelada', function () { pm.expect(r.cancelled).to.be.true; });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Verificar assentos após cancelamento",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/flights/{{flightId}}"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status 200', function () { pm.response.to.have.status(200); });",
+              "const f = pm.response.json();",
+              "pm.test('Assentos restaurados ao valor inicial', function () { pm.expect(f.seatsAvailable).to.eql(parseInt(pm.environment.get('initialSeats'))); });"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [],
+  "auth": null
+}
